@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es-MX">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tu plan para un fin de año sin deudas</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Nunito:wght@400;600;700;800&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef4ef;--card:#fff;--ink:#24352f;--soft:#5a6b64;
+    --teal:#0f6e64;--teal-deep:#0b4f48;--green:#2e9e5b;--amber:#e0982f;--red:#e0553f;--gold:#dca24e;
+    --line:#e2ebe4;--shadow:0 18px 50px rgba(15,78,72,.14);--r:22px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  html,body{height:100%}
+  body{font-family:'Nunito',system-ui,-apple-system,sans-serif;
+    background:radial-gradient(1200px 600px at 50% -10%, #f7fbf7 0%, rgba(247,251,247,0) 60%),var(--bg);
+    color:var(--ink);min-height:100vh;display:flex;align-items:flex-start;justify-content:center;padding:20px 16px 40px;-webkit-font-smoothing:antialiased;}
+  .wrap{width:100%;max-width:580px;margin-top:auto;margin-bottom:auto}
+  .card{background:var(--card);border-radius:var(--r);box-shadow:var(--shadow);border:1px solid var(--line);overflow:hidden}
+  .screen{display:none;animation:fade .45s ease both}.screen.active{display:block}
+  @keyframes fade{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:translateY(0)}}
+  @media (prefers-reduced-motion:reduce){.screen{animation:none}}
+
+  .hero{padding:42px 30px 32px;text-align:center;background:linear-gradient(160deg,#0f6e64,#0b4f48);color:#fff}
+  .hero .ic{width:76px;height:76px;margin:0 auto 16px;border-radius:50%;background:rgba(255,255,255,.14);display:flex;align-items:center;justify-content:center;font-size:36px}
+  .kicker{font-family:'Fredoka';font-weight:600;letter-spacing:.14em;text-transform:uppercase;font-size:12px;opacity:.85;margin-bottom:10px}
+  .hero h1{font-family:'Fredoka';font-weight:700;font-size:27px;line-height:1.1;margin-bottom:12px}
+  .hero p{font-size:15.5px;line-height:1.5;opacity:.94;max-width:40ch;margin:0 auto}
+  .welcome-body{padding:26px 30px 32px}
+  .idea{background:#f3f8f4;border:1px solid var(--line);border-left:4px solid var(--teal);border-radius:12px;padding:14px 16px;font-size:14.5px;line-height:1.5;margin-bottom:22px}
+  .idea b{color:var(--teal-deep)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:9px;font-family:'Fredoka';font-weight:600;font-size:18px;background:var(--gold);color:#4a2f00;border:none;border-radius:15px;padding:16px 26px;width:100%;cursor:pointer;box-shadow:0 8px 20px rgba(220,162,78,.35);transition:transform .12s,box-shadow .12s}
+  .btn:hover{transform:translateY(-2px);box-shadow:0 12px 26px rgba(220,162,78,.45)}
+  .btn:active{transform:translateY(0)}
+  .btn:focus-visible{outline:3px solid var(--teal);outline-offset:3px}
+
+  .calc-head{padding:22px 24px 18px;background:linear-gradient(160deg,#0f6e64,#0b4f48);color:#fff}
+  .calc-head h2{font-family:'Fredoka';font-weight:600;font-size:19px}
+  .calc-head p{font-size:13px;opacity:.9;margin-top:5px}
+  .body{padding:22px 24px 28px}
+  .step-label{font-family:'Fredoka';font-weight:600;font-size:13px;letter-spacing:.06em;text-transform:uppercase;color:var(--soft);margin:4px 0 12px;display:flex;align-items:center;gap:8px}
+  .step-label.sp{margin-top:24px}
+  .step-label .n{width:22px;height:22px;border-radius:50%;background:var(--teal);color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;flex:none}
+  .step-label .hintx{font-weight:600;font-size:11px;color:var(--soft);text-transform:none;letter-spacing:0;margin-left:auto;opacity:.8}
+
+  .rubro{display:flex;align-items:center;gap:11px;border:1px solid var(--line);border-radius:13px;padding:9px 13px;margin-bottom:8px}
+  .rubro.ing{border-left:4px solid var(--green)}
+  .rubro .emo{font-size:21px;flex:none;width:26px;text-align:center}
+  .rubro .nm{flex:1;min-width:0;font-family:'Fredoka';font-weight:600;font-size:14.5px}
+  .rubro .nm small{display:block;font-family:'Nunito';font-weight:700;font-size:11.5px;color:var(--soft);margin-top:1px}
+  .rubro .in{display:flex;align-items:center;gap:3px;background:#f4f7f4;border:1.5px solid var(--line);border-radius:10px;padding:6px 10px}
+  .rubro .in span{font-family:'Fredoka';font-weight:700;color:var(--soft);font-size:15px}
+  .rubro .in input{width:80px;border:none;background:transparent;font-family:'Fredoka';font-weight:700;font-size:15px;color:var(--ink);outline:none;text-align:right}
+  .rubro .in:focus-within{border-color:var(--teal)}
+
+  .total{background:#fbf3e7;border:1px solid #f0dfbf;border-radius:14px;padding:13px 18px;display:flex;justify-content:space-between;align-items:center;margin:14px 0 4px}
+  .total .lbl{font-family:'Fredoka';font-weight:600;font-size:15px;color:#9a6a12}
+  .total .amt{font-family:'Fredoka';font-weight:700;font-size:23px;color:#9a6a12}
+
+  .plan{border-radius:16px;padding:22px 20px;text-align:center;margin:4px 0 18px;background:linear-gradient(135deg,#0f6e64,#0b4f48);color:#fff}
+  .plan .lead{font-size:14px;opacity:.92;margin-bottom:4px}
+  .plan .big{font-family:'Fredoka';font-weight:700;font-size:38px;line-height:1.05}
+  .plan .big small{font-size:16px;font-weight:600;opacity:.85}
+  .plan .alt{font-size:14px;opacity:.95;margin-top:7px}
+  .desglose{border-top:1px solid rgba(255,255,255,.2);margin-top:14px;padding-top:12px;text-align:left}
+  .desglose .d{display:flex;justify-content:space-between;align-items:baseline;gap:10px;font-size:14px;padding:3px 0}
+  .desglose .d .dl{opacity:.9}
+  .desglose .d .dv{font-family:'Fredoka';font-weight:700}
+  .desglose .d.sumrow{border-top:1px dashed rgba(255,255,255,.3);margin-top:6px;padding-top:8px}
+  .desglose .d.sumrow .dl,.desglose .d.sumrow .dv{font-family:'Fredoka';font-weight:700;font-size:15px}
+  .plan.wait{background:#f3f6f3;color:var(--soft);border:1px dashed #cfdcd4}
+  .plan.wait .big{color:var(--teal-deep);font-size:19px}
+  .plan.allcov{background:linear-gradient(135deg,#2e9e5b,#217a45)}
+
+  .sema{display:flex;align-items:flex-start;gap:10px;border-radius:12px;padding:12px 14px;margin-bottom:18px;font-size:13.5px;line-height:1.4}
+  .sema .dot{width:12px;height:12px;border-radius:50%;flex:none;margin-top:3px}
+  .sema.v{background:#e7f6ec;border:1px solid #bfe6cd;color:#1f7a44}.sema.v .dot{background:var(--green)}
+  .sema.a{background:#fbf1de;border:1px solid #f0dfbf;color:#9a6a12}.sema.a .dot{background:var(--amber)}
+  .sema.r{background:#fcecea;border:1px solid #f3d3cd;color:#b23a28}.sema.r .dot{background:var(--red)}
+  .sema b{font-family:'Fredoka';font-weight:600}
+
+  .tips{background:#f3f8f4;border:1px solid var(--line);border-radius:14px;padding:15px 16px;margin-top:4px}
+  .tips h3{font-family:'Fredoka';font-weight:600;font-size:15px;color:var(--teal-deep);margin-bottom:9px;display:flex;align-items:center;gap:8px}
+  .tips ul{list-style:none;display:flex;flex-direction:column;gap:8px}
+  .tips li{display:flex;gap:9px;font-size:14px;line-height:1.42}.tips li .mk{color:var(--teal);font-weight:800;flex:none}
+  .closing{text-align:center;font-family:'Fredoka';font-weight:500;font-size:15.5px;color:var(--teal-deep);line-height:1.4;margin:18px 6px 6px}
+  .brand{text-align:center;margin-top:14px;font-family:'Fredoka';font-weight:600;font-size:12.5px;color:var(--soft)}
+  .brand span{color:var(--teal)}
+  @media(max-width:430px){.hero{padding:36px 20px 28px}.hero h1{font-size:24px}.welcome-body,.body{padding-left:18px;padding-right:18px}.calc-head{padding-left:18px;padding-right:18px}}
+</style>
+</head>
+<body>
+<div class="wrap"><div class="card">
+
+  <section id="welcome" class="screen active">
+    <div class="hero">
+      <div class="ic">🎄</div>
+      <div class="kicker">Educación financiera · VIVE</div>
+      <h1>Tu plan para un fin de año sin deudas</h1>
+      <p>Calcula lo que gastarás, crúzalo con tu aguinaldo y descubre cuánto apartar desde hoy.</p>
+    </div>
+    <div class="welcome-body">
+      <div class="idea">Diciembre es el mes más caro del año — pero <b>no tiene que dejarte endeudado</b>. Si empiezas a apartar desde hoy, llegas a las fiestas tranquilo y entras al año nuevo sin deudas.</div>
+      <button class="btn" onclick="app.start()">Armar mi plan →</button>
+    </div>
+  </section>
+
+  <section id="calc" class="screen">
+    <div class="calc-head"><h2>🎄 Tu plan de fin de año</h2><p>Anota lo que esperas gastar y recibir. No tiene que ser exacto — una buena estimación basta.</p></div>
+    <div class="body" id="body"></div>
+  </section>
+
+</div></div>
+
+<script>
+const RUBROS=[
+  {k:'buenfin', emo:'🛍️', nm:'Compras del Buen Fin'},
+  {k:'regalos', emo:'🎁', nm:'Regalos e intercambios'},
+  {k:'navidad', emo:'🎄', nm:'Cena de Navidad'},
+  {k:'anonuevo', emo:'🥂', nm:'Cena de Año Nuevo'},
+  {k:'posadas', emo:'🥳', nm:'Posadas y fiestas'},
+  {k:'ropa', emo:'👕', nm:'Ropa para estrenar'},
+  {k:'reyes', emo:'🧸', nm:'Reyes Magos'},
+  {k:'adornos', emo:'✨', nm:'Adornos y árbol'},
+  {k:'otros', emo:'➕', nm:'Otros (viajes, propinas…)'},
+];
+const fmt=new Intl.NumberFormat('es-MX',{style:'currency',currency:'MXN',maximumFractionDigits:0});
+const peso=n=>fmt.format(Math.max(0,Math.round(n)));
+const onlyNum=s=>{const v=parseInt(String(s).replace(/[^\d]/g,''),10);return isNaN(v)?0:v;};
+
+function fechas(){
+  const hoy=new Date();
+  let obj=new Date(hoy.getFullYear(),11,24);
+  if(hoy>obj) obj=new Date(hoy.getFullYear()+1,11,24);
+  const dias=Math.max(1,Math.ceil((obj-hoy)/(1000*60*60*24)));
+  return {dias, semanas:Math.max(1,Math.round(dias/7)), quincenas:Math.max(1,Math.round(dias/15))};
+}
+
+const app={
+  montos:{}, ingQuincena:0, aguinaldo:0,
+
+  start(){ this.show('calc'); this.render(); },
+  show(id){document.querySelectorAll('.screen').forEach(s=>s.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'});},
+  total(){ let t=0; RUBROS.forEach(r=>t+=(this.montos[r.k]||0)); return t; },
+
+  render(){
+    const b=document.getElementById('body');
+    const total=this.total();
+    const f=fechas();
+    b.innerHTML=
+      '<div class="step-label"><span class="n">1</span> ¿Qué vas a gastar estas fiestas?</div>'+
+      RUBROS.map(r=>(
+        '<div class="rubro"><span class="emo">'+r.emo+'</span><span class="nm">'+r.nm+'</span>'+
+        '<span class="in"><span>$</span><input id="m-'+r.k+'" inputmode="numeric" placeholder="0" value="'+(this.montos[r.k]?this.montos[r.k].toLocaleString('es-MX'):'')+'"></span></div>'
+      )).join('')+
+      '<div class="total"><span class="lbl">🎁 Tu fin de año cuesta</span><span class="amt">'+peso(total)+'</span></div>'+
+
+      '<div class="step-label sp"><span class="n">2</span> ¿Con qué cuentas? <span class="hintx">opcional</span></div>'+
+      '<div class="rubro ing"><span class="emo">💵</span><span class="nm">Tu ingreso por quincena<small>Lo que recibes cada 15 días</small></span>'+
+        '<span class="in"><span>$</span><input id="ing-q" inputmode="numeric" placeholder="0" value="'+(this.ingQuincena?this.ingQuincena.toLocaleString('es-MX'):'')+'"></span></div>'+
+      '<div class="rubro ing"><span class="emo">🎉</span><span class="nm">Tu aguinaldo estimado<small>Llega en diciembre (antes del 20)</small></span>'+
+        '<span class="in"><span>$</span><input id="ing-a" inputmode="numeric" placeholder="0" value="'+(this.aguinaldo?this.aguinaldo.toLocaleString('es-MX'):'')+'"></span></div>'+
+
+      '<div class="step-label sp"><span class="n">3</span> Tu plan real</div>'+
+      this.planCard(total,f)+
+
+      '<div class="tips"><h3>💡 Para que te rinda y no te endeudes</h3><ul>'+
+        '<li><span class="mk">•</span><span>Guarda ese dinero en una <b>cuenta aparte</b> (tu "guardadito de diciembre"), donde no lo gastes sin querer.</span></li>'+
+        '<li><span class="mk">•</span><span>El <b>Buen Fin (13-17 de noviembre)</b> es tu oportunidad para comprar regalos con descuento — pero con lista y <b>con el dinero que ya apartaste</b>, no a crédito.</span></li>'+
+        '<li><span class="mk">•</span><span>Ponle un <b>tope a los regalos</b> e intercambios. El cariño no se mide en lo caro.</span></li>'+
+        '<li><span class="mk">•</span><span>Tu <b>aguinaldo</b> es un refuerzo que llega en diciembre, no tu única fuente. Lo que apartas antes es lo que te quita la presión.</span></li>'+
+      '</ul></div>'+
+      '<div class="closing">«Las fiestas que se planean se disfrutan; las que se improvisan se pagan en enero.»</div>'+
+      '<div class="brand">Programa <span>VIVE</span> · Educación financiera</div>';
+
+    RUBROS.forEach(r=>{
+      const el=document.getElementById('m-'+r.k);
+      el.addEventListener('input',()=>{this.montos[r.k]=onlyNum(el.value);this.render();this.focusEnd('m-'+r.k);});
+    });
+    const eq=document.getElementById('ing-q');
+    eq.addEventListener('input',()=>{this.ingQuincena=onlyNum(eq.value);this.render();this.focusEnd('ing-q');});
+    const ea=document.getElementById('ing-a');
+    ea.addEventListener('input',()=>{this.aguinaldo=onlyNum(ea.value);this.render();this.focusEnd('ing-a');});
+  },
+
+  planCard(total,f){
+    if(total<=0) return '<div class="plan wait"><div class="big">Anota arriba lo que piensas gastar</div><div class="lead" style="margin-top:6px">y te digo cuánto apartar desde hoy.</div></div>';
+
+    const agui=this.aguinaldo;
+    // El aguinaldo llega en diciembre y cubre parte; lo que te toca juntar antes es la diferencia
+    const faltante=Math.max(0, total-agui);
+
+    // Caso: el aguinaldo cubre todo
+    if(agui>0 && agui>=total){
+      const sobra=agui-total;
+      return '<div class="plan allcov"><div class="lead">Con tu aguinaldo…</div>'+
+        '<div class="big">¡Te alcanza! 🎉</div>'+
+        '<div class="alt">Tu aguinaldo de '+peso(agui)+' cubre todo tu fin de año'+(sobra>0?(' y hasta te sobran '+peso(sobra)):'')+'.</div>'+
+        '<div class="desglose"><div class="d"><span class="dl">Tu fin de año cuesta</span><span class="dv">'+peso(total)+'</span></div>'+
+        '<div class="d"><span class="dl">Tu aguinaldo</span><span class="dv">'+peso(agui)+'</span></div></div></div>'+
+        '<div class="sema v"><span class="dot"></span><span>Aun así, <b>aparta algo cada quincena</b>: así no gastas el aguinaldo completo y empiezas enero con un colchón.</span></div>';
+    }
+
+    const quinc=faltante/f.quincenas, sem=faltante/f.semanas;
+    let html='<div class="plan"><div class="lead">Apartando desde hoy…</div>'+
+      '<div class="big">'+peso(quinc)+'<small> por quincena</small></div>'+
+      '<div class="alt">o '+peso(sem)+' por semana, durante unas '+f.semanas+' semanas</div>'+
+      '<div class="desglose">'+
+        '<div class="d"><span class="dl">Tu fin de año cuesta</span><span class="dv">'+peso(total)+'</span></div>'+
+        (agui>0?'<div class="d"><span class="dl">Tu aguinaldo cubre</span><span class="dv">− '+peso(agui)+'</span></div>':'')+
+        '<div class="d sumrow"><span class="dl">Te toca juntar</span><span class="dv">'+peso(faltante)+'</span></div>'+
+      '</div></div>';
+
+    // Semáforo contra el ingreso quincenal
+    if(this.ingQuincena>0){
+      const pct=Math.round(quinc/this.ingQuincena*100);
+      if(pct<=10){
+        html+='<div class="sema v"><span class="dot"></span><span><b>Muy alcanzable:</b> apartar '+peso(quinc)+' es el '+pct+'% de tu quincena. Ni lo vas a sentir — automatízalo apenas cobres.</span></div>';
+      } else if(pct<=25){
+        html+='<div class="sema a"><span class="dot"></span><span><b>Se puede, con disciplina:</b> es el '+pct+'% de tu quincena. Apártalo PRIMERO, apenas cobres, antes de gastar en otra cosa.</span></div>';
+      } else {
+        html+='<div class="sema r"><span class="dot"></span><span><b>Está apretado:</b> '+peso(quinc)+' es el '+pct+'% de tu quincena. Considera recortar tu lista, o sumar un ingreso extra y cazar gastos hormiga para completar.</span></div>';
+      }
+    }
+    return html;
+  },
+  focusEnd(id){const el=document.getElementById(id);if(!el)return;el.focus();const v=el.value;el.value='';el.value=v;},
+};
+</script>
+</body>
+</html>
